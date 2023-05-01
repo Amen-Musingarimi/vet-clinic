@@ -10,17 +10,16 @@ This repository includes files with plain SQL that can be used to recreate a dat
 
 ## Author
 
-👤**Leslie Gudo**
+👤**Amen Musingarimi**
 
-- GitHub: [@githubhandle](https://github.com/Leeoasis)
-- Twitter: [@twitterhandle](https://twitter.com/gudo_leslie)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/leslie-gudo/)
+- GitHub: [@githubhandle](https://github.com/Amen-Musingarimi)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/atmusingarimi/)
 
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/Leeoasis/vet-clinic-database/issues).
+Feel free to check the [issues page](https://github.com/Amen-Musingarimi/vet-clinic/issues).
 
 ## Show your support
 
