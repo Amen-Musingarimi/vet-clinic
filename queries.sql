@@ -1,69 +1,42 @@
 /*Queries that provide answers to the questions from all projects.*/
 
-BEGIN;
+-- What animals belong to Melody Pond?
+SELECT * FROM animals 
+JOIN owners ON animals.owner_id = owners.id 
+WHERE owners.full_name = 'Melody Pond';
 
-UPDATE animals
-SET species = 'unspecified';
-SELECT * FROM animals;
+-- List of all animals that are pokemon (their type is Pokemon)
+SELECT * FROM animals 
+JOIN species ON animals.species_id = species.id 
+WHERE species.name = 'Pokemon';
 
-ROLLBACK;
+-- List all owners and their animals
+SELECT owners.full_name, animals.name 
+FROM owners 
+LEFT JOIN animals ON owners.id = animals.owner_id;
 
-SELECT * FROM animals;
+-- How many animals are there per species?
+SELECT species.name, COUNT(*) AS animal_count 
+FROM animals 
+JOIN species ON animals.species_id = species.id 
+GROUP BY species.name;
 
-BEGIN;
+-- List all Digimon owned by Jennifer Orwell
+SELECT animals.name 
+FROM animals 
+JOIN owners ON animals.owner_id = owners.id 
+JOIN species ON animals.species_id = species.id 
+WHERE owners.full_name = 'Jennifer Orwell' AND species.name = 'Digimon';
 
-UPDATE animals
-SET species = 'digimon'
-WHERE name LIKE '%mon';
+-- List all animals owned by Dean Winchester that haven't tried to escape
+SELECT * FROM animals 
+JOIN owners ON animals.owner_id = owners.id 
+WHERE owners.full_name = 'Dean Winchester' AND animals.escape_attempts = 0;
 
-UPDATE animals
-SET species = 'pokemon'
-WHERE species IS NULL;
-
-COMMIT;
-
-BEGIN;
-
-DELETE FROM animals;
-
-ROLLBACK;
-
-BEGIN;
-
-DELETE FROM animals
-WHERE date_of_birth > '2022-01-01';
-
-SAVEPOINT my_savepoint;
-
-UPDATE animals
-SET weight_kg = weight_kg * -1;
-
-ROLLBACK TO my_savepoint;
-
-UPDATE animals
-SET weight = weight * -1
-WHERE weight < 0;
-
-COMMIT;
-
-SELECT COUNT(*) FROM animals;
-
-SELECT COUNT(*) FROM animals WHERE escape_attempts = 0;
-
-SELECT AVG(weight_kg) FROM animals;
-
-SELECT name, neutered, escape_attempts
-FROM animals
-WHERE escape_attempts = (
-    SELECT MAX(escape_attempts)
-    FROM animals
-)
-
-SELECT species, MIN(weight_kg), MAX(weight_kg)
-FROM animals
-GROUP BY species;
-
-SELECT species, AVG(escape_attempts) as avg_escape_attempts
-FROM animals
-WHERE date_of_birth BETWEEN '1990-01-01' AND '2000-12-31'
-GROUP BY species;
+-- Who owns the most animals?
+SELECT owners.full_name, COUNT(*) AS animal_count 
+FROM animals 
+JOIN owners ON animals.owner_id = owners.id 
+GROUP BY owners.full_name 
+ORDER BY COUNT(*) DESC 
+LIMIT 1;
