@@ -13,3 +13,11 @@ CREATE TABLE specializations (
   species_id INTEGER REFERENCES species(id),
   PRIMARY KEY (vet_id, species_id)
 );
+
+-- Create visits table
+CREATE TABLE visits (
+  animal_id INTEGER REFERENCES animals(id),
+  vet_id INTEGER REFERENCES vets(id),
+  visit_date DATE,
+  PRIMARY KEY (animal_id, vet_id, visit_date)
+);
