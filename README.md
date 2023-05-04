@@ -36,7 +36,7 @@ In this project, we utilize a relational database to construct the primary data 
 
 ### Key Features <a name="key-features"></a>
 
-- **[Create animals, species, owners table]**
+- **[Create animals, species, owners, specialisations, vets, visits tables]**
 - **[Insert data inside tables]**
 - **[Write queries for the data inside tables]**
 
